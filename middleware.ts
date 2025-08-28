@@ -47,8 +47,20 @@ export function middleware(req: NextRequest) {
   const hostHeader = req.headers.get('host') || '';
   const domain = hostHeader.split(':')[0]; // strip port
   const parts = domain.split('.');
-  // Assuming pattern: subdomain.domain.tld (adjust if you have deeper nesting)
-  const sub = parts.length > 2 ? parts[0] : ''; // treat apex as ''
+  // Patterns we may receive:
+  //  dominio.com                -> apex
+  //  www.dominio.com            -> www (ignored)
+  //  resto2.dominio.com         -> sub = resto2
+  //  www.resto2.dominio.com     -> nested www + sub (queremos sub = resto2)
+  let sub = '';
+  if (parts.length > 2) {
+    if (parts[0] === 'www' && parts.length > 3) {
+      // www.resto2.dominio.com => usar segundo label
+      sub = parts[1];
+    } else if (parts[0] !== 'www') {
+      sub = parts[0];
+    }
+  }
 
   if (IGNORE_SUBDOMAINS.has(sub)) return NextResponse.next();
 
