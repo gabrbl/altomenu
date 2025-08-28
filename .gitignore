@@ -16,6 +16,7 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
+.env.production
 
 # TypeScript
 *.tsbuildinfo
@@ -44,7 +45,9 @@ node_modules/.prisma
 # Next.js static build output
 /.next/
 
+# Vercel
+.vercel
+
 # Misc
 .env.test
 /.history
-node_modules
