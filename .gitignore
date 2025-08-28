@@ -1,1 +1,50 @@
+.next/
+node_modules/
+/.cache
+/.turbo
+out/
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Yarn/NPM
+.pnp.cjs
+.pnp.js
+.yarn/*
+.yarnrc.yml
+
+# Coverage
+coverage/
+
+# Prisma
+prisma/dev.db
+node_modules/.prisma
+
+# Next.js static build output
+/.next/
+
+# Misc
+.env.test
+/.history
 node_modules

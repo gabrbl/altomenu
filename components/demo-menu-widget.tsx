@@ -1,5 +1,5 @@
 
-'use client';
+ 'use client';
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { formatPrice } from '@/lib/utils';
 
 interface MenuItem {
   id: string;
@@ -147,7 +148,7 @@ export default function DemoMenuWidget() {
         }
         if (item) {
           setMenu(prev => [...prev, item]);
-          return `✅ Agregado: ${item.name} - $${item.price.toLocaleString()}`;
+          return `✅ Agregado: ${item.name} - $${formatPrice(item.price)}`;
         }
         break;
 
@@ -161,7 +162,7 @@ export default function DemoMenuWidget() {
             setMenu(prev => prev.map(m => 
               m.id === menuItem.id ? { ...m, price: newPrice } : m
             ));
-            return `✅ Precio actualizado: ${menuItem.name} - $${newPrice.toLocaleString()}`;
+            return `✅ Precio actualizado: ${menuItem.name} - $${formatPrice(newPrice)}`;
           }
           return `No encontré "${item.name}" en el menú.`;
         }
@@ -193,7 +194,7 @@ export default function DemoMenuWidget() {
                 ? { ...m, available: true, ...(newPrice ? { price: newPrice } : {}) }
                 : m
             ));
-            return `✅ Disponible: ${menuItem.name}${newPrice ? ` - $${newPrice.toLocaleString()}` : ''}`;
+            return `✅ Disponible: ${menuItem.name}${newPrice ? ` - $${formatPrice(newPrice)}` : ''}`;
           }
           return `No encontré "${item.name}" en el menú.`;
         }
@@ -486,7 +487,7 @@ export default function DemoMenuWidget() {
                                 <p className={`text-xl font-bold ${
                                   item.available ? 'text-primary' : 'text-muted-foreground'
                                 }`}>
-                                  ${item.price.toLocaleString()}
+                                  {formatPrice(item.price)}
                                 </p>
                               </div>
                             </motion.div>

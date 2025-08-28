@@ -53,12 +53,6 @@ export default function Footer() {
               <Link href="/planes" className="block text-muted-foreground hover:text-primary transition-colors">
                 Planes y Precios
               </Link>
-              <Link href="/plantillas" className="block text-muted-foreground hover:text-primary transition-colors">
-                Plantillas
-              </Link>
-              <Link href="/casos" className="block text-muted-foreground hover:text-primary transition-colors">
-                Casos de Éxito
-              </Link>
             </div>
           </div>
 
